@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8YX-ce-x5E">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Vex-rW-GRa">
+            <objects>
+                <tabBarController id="8YX-ce-x5E" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="JQR-rB-NYL">
+                        <rect key="frame" x="0.0" y="431" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="pqD-GY-fK1" kind="relationship" relationship="viewControllers" id="TlW-hC-PRD"/>
+                        <segue destination="VP0-yo-xQm" kind="relationship" relationship="viewControllers" id="MMU-yp-16X"/>
+                        <segue destination="x8z-In-vRC" kind="relationship" relationship="viewControllers" id="WK8-5F-urt"/>
+                        <segue destination="bTs-wz-Haq" kind="relationship" relationship="viewControllers" id="7fI-SX-eYr"/>
+                        <segue destination="MXm-tJ-mpJ" kind="relationship" relationship="viewControllers" id="QJe-p7-5kf"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FNP-y4-bzi" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="110" y="272"/>
+        </scene>
+        <!--IK View Controller - Item-->
+        <scene sceneID="kbY-c5-vJl">
+            <objects>
+                <viewController id="pqD-GY-fK1" userLabel="IK View Controller - Item" customClass="IKViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dJZ-Q6-BwT"/>
+                        <viewControllerLayoutGuide type="bottom" id="r3j-7P-AhE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ikA-le-7Fc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="for ISHII Kenji" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L2A-fL-Ujx">
+                                <rect key="frame" x="108" y="273" width="105" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="IK" image="square" id="ceR-wR-yge"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ha5-yC-W0V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="556" y="-181"/>
+        </scene>
+        <!--MK View Controller - Item-->
+        <scene sceneID="L1Y-q4-4an">
+            <objects>
+                <viewController id="VP0-yo-xQm" userLabel="MK View Controller - Item" customClass="MKViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jTr-HL-wUK"/>
+                        <viewControllerLayoutGuide type="bottom" id="E1G-ew-tWV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="i6Y-k4-n9I">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="for MATSUBARA Kazuya" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSm-RB-v7N">
+                                <rect key="frame" x="65" y="273" width="190" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="MK" image="circle" id="Tym-i7-MdQ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dFY-cz-46W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="556" y="680"/>
+        </scene>
+        <!--HI View Controller - Item-->
+        <scene sceneID="fMu-0U-Nw3">
+            <objects>
+                <viewController id="MXm-tJ-mpJ" userLabel="HI View Controller - Item" customClass="HIViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ESp-Fg-OYM"/>
+                        <viewControllerLayoutGuide type="bottom" id="Z1B-6p-yfC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FTI-tD-qse">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="for HARA Isao" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDP-Z5-EVI">
+                                <rect key="frame" x="106" y="273" width="109" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="HI" image="square" id="id8-gD-lfj"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aLP-oz-Nff" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="994" y="956"/>
+        </scene>
+        <!--YK View Controller - Item-->
+        <scene sceneID="IAM-gr-Ylz">
+            <objects>
+                <viewController id="bTs-wz-Haq" userLabel="YK View Controller - Item" customClass="YKViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MFP-5A-dRy"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ioc-5A-BXS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="347-Ca-2Tm">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="for YANAGIDA Kenji" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="omt-Sp-Ahx">
+                                <rect key="frame" x="84" y="273" width="153" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="YK" image="circle" id="fGg-Cv-NOf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HaJ-Il-1ou" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="994" y="272"/>
+        </scene>
+        <!--SS View Controller - Item-->
+        <scene sceneID="9Nj-WS-L2b">
+            <objects>
+                <viewController id="x8z-In-vRC" userLabel="SS View Controller - Item" customClass="SSViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="adQ-4d-FYr"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jmc-Dv-EZ3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Qfa-XX-yg7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="for SANYOSHI Sosuke" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOG-Yz-ivz">
+                                <rect key="frame" x="73" y="273" width="174" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="SS" image="square" id="dWb-ed-jvY"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KaB-ab-wkF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="994" y="-405"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="circle" width="30" height="30"/>
+        <image name="square" width="30" height="30"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
