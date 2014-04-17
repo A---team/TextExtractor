@@ -10,6 +10,11 @@
 
 @interface HIViewController ()
 
+@property (weak, nonatomic) IBOutlet UITextField *anyText;
+@property (weak, nonatomic) IBOutlet UITextView *copiedText;
+- (IBAction)copying:(UIButton *)sender;
+- (IBAction)tapped:(UITapGestureRecognizer *)sender;
+
 @end
 
 @implementation HIViewController
@@ -33,6 +38,16 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)copying:(UIButton *)sender
+{
+    _copiedText.text = _anyText.text;
+}
+
+- (IBAction)tapped:(UITapGestureRecognizer *)sender
+{
+    [self.view endEditing:YES];
 }
 
 @end
