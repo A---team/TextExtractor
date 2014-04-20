@@ -1,9 +1,9 @@
 //
 //  CollectionCell.h
-//  CollectionViewSample
+//  TextExtractorPlease
 //
-//  Created by Natsuko Nishikata on 2012/09/17.
-//  Copyright (c) 2012年 Natsuko Nishikata. All rights reserved.
+//  Created by 石井賢二 on 2014/04/20.
+//  Copyright (c) 2014年 NESW. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

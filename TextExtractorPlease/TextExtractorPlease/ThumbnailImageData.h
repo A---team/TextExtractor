@@ -1,13 +1,14 @@
 //
-//  CollectionViewController.h
+//  ThumbnailImageData.h
 //  TextExtractorPlease
 //
 //  Created by 石井賢二 on 2014/04/20.
 //  Copyright (c) 2014年 NESW. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface CollectionViewController : UICollectionViewController
+@interface ThumbnailImageData : NSObject
 
+- (NSArray *) getImageArray;
 @end

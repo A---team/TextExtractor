@@ -1,138 +1,99 @@
 //
-//  ViewController.m
-//  CollectionViewSample
+//  CollectionViewController.m
+//  TextExtractorPlease
 //
-//  Created by Natsuko Nishikata on 2012/09/17.
-//  Copyright (c) 2012年 Natsuko Nishikata. All rights reserved.
+//  Created by 石井賢二 on 2014/04/20.
+//  Copyright (c) 2014年 NESW. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "CollectionViewController.h"
 #import "CollectionCell.h"
-#import "HeaderView.h"
+#import "ThumbnailImageData.h"
 
-@interface ViewController ()
-@property (nonatomic, strong) NSArray *titles;
-@property (nonatomic, strong) NSArray *photos;
+@interface CollectionViewController ()
+@property (nonatomic, strong) NSArray *images; // UIImageViewの配列
+@property (nonatomic, strong) NSArray *urlArray; // NSString(URL)の配列
+
 @end
 
-@implementation ViewController
+@implementation CollectionViewController
 
-#pragma mark - viewDidLoad で呼ばれ、写真のデータを詰める
-- (void)loadTestPhotos {
-    
-    // 写真のデータを配列に詰める　その１
-    NSMutableArray *parisPhotos = [NSMutableArray array];
-    for (int i = 1; i <= 8; i++) {
-        NSString *filename = [NSString stringWithFormat:@"p%d.jpg", i];
-        [parisPhotos addObject:[UIImage imageNamed:filename]];
+// URLからデータを取得し、取得したデータ配列を返却する
+- (NSMutableArray *)loadImageData
+{
+    NSMutableArray *muArray = [NSMutableArray array];
+    self.urlArray = [[ThumbnailImageData alloc] getImageArray];
+    for (int i=0; i<self.urlArray.count; i++) {
+        NSData *dt = [NSData dataWithContentsOfURL: [NSURL URLWithString:[self.urlArray objectAtIndex:i]]];
+        [muArray addObject:[[UIImage alloc] initWithData:dt]];
     }
-    
-    // 写真のデータを配列に詰める　その２
-    NSMutableArray *msmPhotos = [NSMutableArray array];
-    for (int i = 1; i <= 11; i++) {
-        NSString *filename = [NSString stringWithFormat:@"m%d.jpg", i];
-        [msmPhotos addObject:[UIImage imageNamed:filename]];
-    }
-    
-    // 写真とタイトルを配列に詰める
-    self.photos = @[parisPhotos, msmPhotos];
-    self.titles = @[@"Paris", @"Mont Saint-Michel"];
+    return muArray;
 }
 
+// Viewロード時の処理
 - (void)viewDidLoad
 {
-    
+    NSLog(@"CollectionViewController viewDidLoad");
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     
-    // サンプルデータの読み込み
-    [self loadTestPhotos];
-    
+    // URL から画像を取得（UIImage）、取得したデータ配列を self.images に詰める
+    self.images = @[[self loadImageData]];
+
     // contentViewにcellのクラスを登録
     [self.collectionView registerClass:[CollectionCell class] forCellWithReuseIdentifier:@"MY_CELL"];
-    
-    // contentViewにheaderのnibを登録
-    UINib *headerNib = [UINib nibWithNibName:@"HeaderView" bundle:nil];
-    [self.collectionView registerNib:headerNib forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"MY_HEADER"];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-    self.photos = nil;
-    self.title = nil;
+    self.images = nil;
 }
 
-/*
- iOS 6.0以降では、shouldAutoRotateToInterfaceOrientation:はdeprecated.
- 代わりにsupportedInterfaceOrientationsをオーバーライドする。
- デフォルト値）iPad: UIInterfaceOrientationMaskAll
-             iPhone: UIInterfaceOrientationMaskAllButUpsideDown
- */
 - (NSUInteger)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskAll;
 }
 
 #pragma mark UICollectionViewDataSource
+// セクションの数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [[self.photos objectAtIndex:section] count];
+    return [[self.images objectAtIndex:section] count];
+}
+
+// セクション内のデータの数
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return [self.images count];
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
-    /*
-     コレクションビューのセルを生成。
-     dequeueReusableCellWithReuseIdentifier:forIndexPath:は、再利用可能なセルがある場合はそのセルを、ない場合は新規にセルを生成して返す。
-     新規セルはinitWithFrame:メソッドもしくはnibからの読み込みで生成される。
-     再利用可能なセルがある場合、prepareForReuseが呼ばれる。
-     
-     注意：
-     あらかじめ、registerClass:forCellWithReuseIdentifier:
-     もしくは、registerNib:forCellWithReuseIdentifier:
-     メソッドにてセルのクラスまたはnibファイルを登録しておく必要がある（viewDidLoad参照）。
-     */
+    // セル情報の取得
     CollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MY_CELL" forIndexPath:indexPath];
     
-    cell.imageView.image = [[self.photos objectAtIndex:indexPath.section] objectAtIndex:indexPath.item];
+    // セルイメージのセット
+    cell.imageView.image = [[self.images objectAtIndex:indexPath.section] objectAtIndex:indexPath.item];
     return cell;
 }
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return [self.photos count];
+// セルを選択した場合の処理
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *messageURL = [self.urlArray objectAtIndex:indexPath.item];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"URL"
+                                                        message:[NSString stringWithFormat:@"%@" , messageURL]
+                                                       delegate:nil
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles:@"OK", nil];
+    [alertView show];
 }
 
-// The view that is returned must be retrieved from a call to -dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    
-    /*
-     コレクションビューのヘッダーを生成。
-     dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:indexPathは、
-     再利用可能なビューがある場合はそのビューを、ない場合は新規にビューを生成して返す。
-     新規ビューはinitWithFrame:メソッドもしくはnibからの読み込みで生成される。
-     再利用可能なビューがある場合、prepareForReuseが呼ばれる。
-     
-     注意：
-     あらかじめ、registerClass:forSupplementaryViewOfKind:withReuseIdentifier:
-     もしくは、registerNib:forSupplementaryViewOfKind:withReuseIdentifier:
-     メソッドにてビューのクラスまたはnibファイルを登録しておく必要がある（viewDidLoad参照）。
-     */
-    HeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"MY_HEADER" forIndexPath:indexPath];
-    
-    headerView.label.text = [self.titles objectAtIndex:indexPath.section];
-    return headerView;
-}
-
-#pragma mark - 
 #pragma mark UICollectionViewDelegateFlowLayout
-/* 
+/*
  セルのサイズをアイテムごとに可変とするためのdelegateメソッド
  */
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    UIImage *image = [[self.photos objectAtIndex:indexPath.section] objectAtIndex:indexPath.item];
-    return CGSizeMake(image.size.width / 2, image.size.height / 2);
-}
 
+    return CGSizeMake(99, 99);
+}
 @end
