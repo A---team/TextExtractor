@@ -9,6 +9,11 @@
 #import "SSViewController.h"
 
 @interface SSViewController ()
+@property (weak, nonatomic) IBOutlet UITextView *ssTextView;
+//@property (weak, nonatomic) IBOutlet UITextView *ssSampleView;
+@property (weak, nonatomic) IBOutlet UISwitch *ssSwitch;
+- (IBAction)ssChangeSwitch:(UISwitch *)sender;
+- (IBAction)tapScreen:(id)sender;
 
 @end
 
@@ -27,6 +32,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    //改行時に先頭がアルファベットのときに大文字になるのを抑制
+    _ssTextView.autocapitalizationType = UITextAutocapitalizationTypeNone;
+//    _ssSampleView.text = @"郵便番号：731-3168\n電話番号：0828492648\n参考URL：\nhttps://www.google.co.jp/\nhttps://www.apple.com/jp/";
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,4 +56,20 @@
 }
 */
 
+
+- (IBAction)ssChangeSwitch:(UISwitch *)sender {
+    [_ssTextView setEditable:sender.on];
+    if (sender.on) {
+        _ssTextView.textColor = [UIColor blackColor];
+        _ssTextView.backgroundColor = [UIColor colorWithRed:0.9 green:1.0 blue:1.0 alpha:1];
+    }else{
+        _ssTextView.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
+        [_ssTextView reloadInputViews];
+
+    }
+}
+
+- (IBAction)tapScreen:(id)sender {
+    [self.view endEditing:YES];    
+}
 @end
