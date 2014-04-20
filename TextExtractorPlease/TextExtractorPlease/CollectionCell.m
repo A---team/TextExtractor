@@ -38,7 +38,7 @@
 - (void)setSelected:(BOOL)selected {
     [super setSelected:selected];
     if (selected) {
-        self.backgroundColor = [UIColor colorWithRed:1.000 green:0.822 blue:0.390 alpha:1.000];
+        self.backgroundColor = [UIColor colorWithRed:1.000 green:0.822 blue:0.390 alpha:1.000];        
     } else {
         self.backgroundColor = [UIColor whiteColor];
     }

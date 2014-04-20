@@ -9,6 +9,7 @@
 #import "CollectionViewController.h"
 #import "CollectionCell.h"
 #import "ThumbnailImageData.h"
+#import "MBProgressHUD.h"
 
 @interface CollectionViewController ()
 @property (nonatomic, strong) NSArray *images; // UIImageViewの配列
@@ -17,6 +18,9 @@
 @end
 
 @implementation CollectionViewController
+{
+    MBProgressHUD *hud;
+}
 
 // URLからデータを取得し、取得したデータ配列を返却する
 - (NSMutableArray *)loadImageData
@@ -30,17 +34,31 @@
     return muArray;
 }
 
-// Viewロード時の処理
+// Viewが表示されるタイミングで実行 viewDidAppear でデータ取得を行うため、このタイミングでProgressを表示する
 - (void)viewDidLoad
 {
     NSLog(@"CollectionViewController viewDidLoad");
+    
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [hud setLabelText:@"Now Loading"]; // ラベル設定.
+
     [super viewDidLoad];
+        
+    // contentViewにcellのクラスを登録
+    [self.collectionView registerClass:[CollectionCell class] forCellWithReuseIdentifier:@"MY_CELL"];
+}
+
+// Viewの表示完了後に呼ばれる
+- (void)viewDidAppear:(BOOL)animated
+{    
     
     // URL から画像を取得（UIImage）、取得したデータ配列を self.images に詰める
     self.images = @[[self loadImageData]];
+    
+    [self.collectionView reloadData];
+    
+    [hud hide:YES];
 
-    // contentViewにcellのクラスを登録
-    [self.collectionView registerClass:[CollectionCell class] forCellWithReuseIdentifier:@"MY_CELL"];
 }
 
 - (void)didReceiveMemoryWarning

@@ -77,6 +77,8 @@
 #pragma mark - Table view Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"didSelectRowAtIndexPath");
+
     if (indexPath.row == 0) {
         [self performSegueWithIdentifier:@"thumbnail" sender:self];
     }else{
@@ -84,6 +86,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"message" message:@"please waiting ..." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK" , nil];
         [alert show];
     }
+    
 }
 
 /*
