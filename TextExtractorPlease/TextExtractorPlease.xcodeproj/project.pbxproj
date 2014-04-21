@@ -26,6 +26,7 @@
 		432BBBBF18FA27D900690E8F /* YKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 432BBBBE18FA27D900690E8F /* YKViewController.m */; };
 		432BBBC318FA27F200690E8F /* HIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 432BBBC118FA27F200690E8F /* HIViewController.m */; };
 		432BBBC418FA27F200690E8F /* HIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 432BBBC218FA27F200690E8F /* HIViewController.xib */; };
+		43D235341904B7690057B79A /* HITextViewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D235331904B7690057B79A /* HITextViewsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,8 @@
 		432BBBC018FA27F200690E8F /* HIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HIViewController.h; path = "HARA-Isao/HIViewController.h"; sourceTree = "<group>"; };
 		432BBBC118FA27F200690E8F /* HIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HIViewController.m; path = "HARA-Isao/HIViewController.m"; sourceTree = "<group>"; };
 		432BBBC218FA27F200690E8F /* HIViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HIViewController.xib; path = "HARA-Isao/HIViewController.xib"; sourceTree = "<group>"; };
+		43D235321904B7690057B79A /* HITextViewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HITextViewsViewController.h; path = "HARA-Isao/HITextViewsViewController.h"; sourceTree = "<group>"; };
+		43D235331904B7690057B79A /* HITextViewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HITextViewsViewController.m; path = "HARA-Isao/HITextViewsViewController.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +178,8 @@
 				432BBBC018FA27F200690E8F /* HIViewController.h */,
 				432BBBC118FA27F200690E8F /* HIViewController.m */,
 				432BBBC218FA27F200690E8F /* HIViewController.xib */,
+				43D235321904B7690057B79A /* HITextViewsViewController.h */,
+				43D235331904B7690057B79A /* HITextViewsViewController.m */,
 			);
 			name = "HARA Isao";
 			sourceTree = "<group>";
@@ -314,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				432BBBB918FA27A900690E8F /* MKViewController.m in Sources */,
+				43D235341904B7690057B79A /* HITextViewsViewController.m in Sources */,
 				432BBB8418FA22FF00690E8F /* AppDelegate.m in Sources */,
 				432BBBBC18FA27C100690E8F /* SSViewController.m in Sources */,
 				432BBB8018FA22FF00690E8F /* main.m in Sources */,
@@ -524,6 +530,7 @@
 				432BBBA718FA22FF00690E8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		432BBBA818FA22FF00690E8F /* Build configuration list for PBXNativeTarget "TextExtractorPleaseTests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +539,7 @@
 				432BBBAA18FA22FF00690E8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

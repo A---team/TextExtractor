@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HITextViewsViewController.h"
 
-@interface HIViewController : UIViewController
+@interface HIViewController : UIViewController <HITextViewsViewControllerDelegate>
 
 @end

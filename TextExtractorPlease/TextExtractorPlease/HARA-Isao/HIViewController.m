@@ -50,4 +50,16 @@
     [self.view endEditing:YES];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"toTextViews"]) {
+        [[segue destinationViewController] setDelegate:self];
+    }
+}
+
+- (void)hiTextViewsViewControllerDidFinish:(HITextViewsViewController *)controller
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end
