@@ -8,7 +8,14 @@
 
 #import "SSViewController.h"
 
-@interface SSViewController ()
+@interface SSViewController (){
+    NSString *beforeString;
+}
+@property (weak, nonatomic) IBOutlet UITextView *ssTextView;
+//@property (weak, nonatomic) IBOutlet UITextView *ssSampleView;
+@property (weak, nonatomic) IBOutlet UISwitch *ssSwitch;
+- (IBAction)ssChangeSwitch:(UISwitch *)sender;
+- (IBAction)tapScreen:(id)sender;
 
 @end
 
@@ -27,6 +34,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    //改行時に先頭がアルファベットのときに大文字になるのを抑制
+    _ssTextView.autocapitalizationType = UITextAutocapitalizationTypeNone;
+//    _ssSampleView.text = @"郵便番号：731-3168\n電話番号：0828492648\n参考URL：\nhttps://www.google.co.jp/\nhttps://www.apple.com/jp/";
+    beforeString =@"";
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,15 +48,29 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)ssChangeSwitch:(UISwitch *)sender {
+    _ssTextView.editable = sender.on;
+    
+    if (sender.on) {
+        _ssTextView.backgroundColor = [UIColor colorWithRed:0.9 green:1.0 blue:1.0 alpha:1];
+        //編集時に青文字にしないため(原因・解決理由不明)
+        _ssTextView.text = _ssTextView.text;
+
+    }else{
+        _ssTextView.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
+        //確定時に青文字にするため(原因・解決理由不明)
+        if (![_ssTextView.text isEqualToString:beforeString]) {
+            NSLog(@"test");
+            beforeString = _ssTextView.text;
+            _ssTextView.text = _ssTextView.text;
+        }
+    }
+    
+    
 }
-*/
 
+- (IBAction)tapScreen:(id)sender {
+    [self.view endEditing:YES];    
+}
 @end
