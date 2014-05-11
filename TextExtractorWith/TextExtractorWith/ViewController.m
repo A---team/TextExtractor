@@ -16,10 +16,17 @@
 @property (weak, nonatomic) IBOutlet UIView *contents; // 出力領域 imageView と textView をセットにしたCellクラスを利用するためこちらを利用しています。
 @property (weak, nonatomic) IBOutlet UISwitch *displayType; //表示タイプ
 
-- (IBAction)submit:(UIButton *)sender;                   // [Submit]ボタンをタップ
-- (IBAction)bkgTapped:(UITapGestureRecognizer *)sender;  // 背景部分をタップ
+- (IBAction)submit:(UIButton *)sender;                  // [Submit]ボタンをタップ
+- (IBAction)bkgTapped:(UITapGestureRecognizer *)sender; // 背景部分をタップ
 
 - (NSArray *)extractImageURLs;  // 投稿内容から画像URLを(文字列の配列として)抽出
+
+// プリセット文字列を入力領域にセット(デモ用)
+- (IBAction)presetA:(UIButton *)sender;
+- (IBAction)presetB:(UIButton *)sender;
+- (IBAction)presetC:(UIButton *)sender;
+- (IBAction)presetD:(UIButton *)sender;
+- (IBAction)presetE:(UIButton *)sender;
 
 @end
 
@@ -68,6 +75,46 @@
 {
     // キーボードを引っ込める
     [self.view endEditing:YES];
+}
+
+//****************************************************************
+// プリセット文字列を入力領域にセット(デモ用)
+- (IBAction)presetA:(UIButton *)sender
+{
+    self.source.text = @"Our company's URL is http://www.nec-solutioninnovators.co.jp and the phone number is 03-5534-2222";
+}
+
+- (IBAction)presetB:(UIButton *)sender
+{
+    self.source.text = @"つぎを参照してくださいhttp://www.apple.com/\n（画像：https://www.apple.com/jp/iphone-5s/home/images/ilife_hero.jpg）";
+}
+
+- (IBAction)presetC:(UIButton *)sender
+{
+    self.source.text = @"https://www.apple.com/jp/iphone-5s/home/images/routing_hero.png";
+}
+
+- (IBAction)presetD:(UIButton *)sender
+{
+    self.source.text = @"https://www.apple.com/jp/iphone-5s/home/images/hero_hero_mba_11.png";
+}
+
+- (IBAction)presetE:(UIButton *)sender
+{
+    self.source.text = @"";
+
+    //領域をクリア
+    for (UIView *view in [_contents subviews]) {
+        [view removeFromSuperview];
+    }
+
+    //出力コンテンツの生成
+    CellView *cellView = [[CellView alloc] initWithFrame:CGRectMake(0, 0, 280, 250)
+                                               withImage:nil
+                                                withText:self.source.text displayType:self.displayType.on];
+
+    //出力領域に描画
+    [_contents addSubview:cellView];
 }
 
 #pragma mark - Inner Method
