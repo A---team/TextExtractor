@@ -43,6 +43,7 @@
 - (IBAction)submit:(UIButton *)sender
 {
     // 入力領域の文字列を出力領域へ表示
+    self.expression.text = @"";
     self.expression.text = self.source.text;
 }
 
