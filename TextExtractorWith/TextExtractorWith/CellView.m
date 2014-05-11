@@ -29,30 +29,37 @@
         [[self layer]setBorderWidth:0.5f];
         
         // イメージを追加
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-        imageView.contentMode = UIViewContentModeScaleToFill;//UIViewContentModeScaleAspectFit;
-        
-        CGRect ivRect, tvRect;
-        if(type == 0){
-            // イメージが左、文書が右
-            // 幅は画像は1/3とする
-            ivRect = CGRectMake(0, 0, frame.size.width / 3, frame.size.height);
-            
-            // テキストを追加
-            // x : 画像の幅
-            // y : 0px
-            // width : 全体の幅 - 画像の幅
-            // height : 全体の高さ
-            tvRect = CGRectMake(ivRect.size.width, 0, frame.size.width - ivRect.size.width, frame.size.height);
-
-        }else if(type == 1){
-            // イメージが下、文書が上
-            ivRect = CGRectMake(0, frame.size.height * 1/3, frame.size.width, frame.size.height * 2/3);
-            tvRect = CGRectMake(0, 0, frame.size.width, frame.size.height / 3);
+        UIImageView *imageView = nil;
+        if (image != nil) {
+            imageView = [[UIImageView alloc] initWithImage:image];
+            imageView.contentMode = UIViewContentModeScaleToFill;//UIViewContentModeScaleAspectFit;
         }
+
+        CGRect ivRect, tvRect;
+        if (imageView == nil) {
+            tvRect = CGRectMake(0, 0, frame.size.width, frame.size.height);
+        } else {
+            if(type == 0){
+                // イメージが左、文書が右
+                // 幅は画像は1/3とする
+                ivRect = CGRectMake(0, 0, frame.size.width / 3, frame.size.height);
+            
+                // テキストを追加
+                // x : 画像の幅
+                // y : 0px
+                // width : 全体の幅 - 画像の幅
+                // height : 全体の高さ
+                tvRect = CGRectMake(ivRect.size.width, 0, frame.size.width - ivRect.size.width, frame.size.height);
+
+            }else if(type == 1){
+                // イメージが下、文書が上
+                ivRect = CGRectMake(0, frame.size.height * 1/3, frame.size.width, frame.size.height * 2/3);
+                tvRect = CGRectMake(0, 0, frame.size.width, frame.size.height / 3);
+            }
         
-        imageView.frame = ivRect;
-        [self addSubview:imageView];
+            imageView.frame = ivRect;
+            [self addSubview:imageView];
+        }
         
         UITextView *textView = [[UITextView alloc] initWithFrame:tvRect];
         textView.text = text;
