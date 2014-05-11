@@ -16,7 +16,7 @@
 - (IBAction)submit:(UIButton *)sender;                   // [Submit]ボタンをタップ
 - (IBAction)bkgTapped:(UITapGestureRecognizer *)sender;  // 背景部分をタップ
 
-- (NSArray *)extractURLfromExpression;  // 出力領域からURLを(文字列の配列で)抽出
+- (NSArray *)extractImageURLs;  // 投稿内容から画像URLを(文字列の配列として)抽出
 
 @end
 
@@ -52,22 +52,16 @@
 {
     // キーボードを引っ込める
     [self.view endEditing:YES];
-
-    //
-    NSArray *urls = [self extractURLfromExpression];
-    for (NSString *url in urls) {
-        NSLog(@"url[%@]", url);
-    }
 }
 
 #pragma mark - Inner Method
 
 //****************************************************************
-// 出力領域からURLを(文字列の配列で)抽出
-- (NSArray *)extractURLfromExpression
+// 投稿内容から画像URLを(文字列の配列として)抽出
+- (NSArray *)extractImageURLs
 {
-    NSString *text = self.expression.text;
-    NSArray *urls = [AppUtility extractURLFromText:text];
+    NSString *text = self.source.text;
+    NSArray *urls = [AppUtility extractImageURLsFromText:text];
     return urls;
 }
 

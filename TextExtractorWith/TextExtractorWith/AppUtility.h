@@ -12,8 +12,8 @@
 
 @interface AppUtility : NSObject
 
-// テキスト(文字列)からURLを抽出
-+ (NSArray *)extractURLFromText:(NSString *)text;
+// テキスト(文字列)から画像URLを抽出
++ (NSArray *)extractImageURLsFromText:(NSString *)text;
 
 @end
 

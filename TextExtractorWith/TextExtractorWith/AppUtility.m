@@ -12,15 +12,15 @@
 
 @implementation AppUtility
 
-// テキスト(文字列)からURLを抽出
-+ (NSArray *)extractURLFromText:(NSString *)text
+// テキスト(文字列)から画像URLを抽出
++ (NSArray *)extractImageURLsFromText:(NSString *)text
 {
-    NSArray *urls;
+    NSArray *imageUrls;
 
     // テスト用データ
-    urls = @[@"https://www.apple.com/jp/iphone-5s/home/images/routing_hero.png", @"https://www.apple.com/jp/iphone-5s/home/images/ilife_hero.jpg", @"https://www.apple.com/jp/iphone-5s/home/images/hero_hero_mba_11.png"];
+    imageUrls = @[@"https://www.apple.com/jp/iphone-5s/home/images/routing_hero.png", @"https://www.apple.com/jp/iphone-5s/home/images/ilife_hero.jpg", @"https://www.apple.com/jp/iphone-5s/home/images/hero_hero_mba_11.png"];
 
-    return urls;
+    return imageUrls;
 }
 
 @end
