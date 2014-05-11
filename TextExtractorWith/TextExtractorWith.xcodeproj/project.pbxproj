@@ -22,6 +22,7 @@
 		4372602219094884009C0D56 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4372600419094884009C0D56 /* UIKit.framework */; };
 		4372602A19094884009C0D56 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4372602819094884009C0D56 /* InfoPlist.strings */; };
 		4372602C19094884009C0D56 /* TextExtractorWithTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4372602B19094884009C0D56 /* TextExtractorWithTests.m */; };
+		A7C8CE05191F9F9D006594E4 /* CellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C8CE04191F9F9D006594E4 /* CellView.m */; };
 		EA0C8A0B6E6F402788209440 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5698A58CB61493C97913430 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,8 @@
 		4372602719094884009C0D56 /* TextExtractorWithTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TextExtractorWithTests-Info.plist"; sourceTree = "<group>"; };
 		4372602919094884009C0D56 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4372602B19094884009C0D56 /* TextExtractorWithTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextExtractorWithTests.m; sourceTree = "<group>"; };
+		A7C8CE03191F9F9D006594E4 /* CellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellView.h; sourceTree = "<group>"; };
+		A7C8CE04191F9F9D006594E4 /* CellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellView.m; sourceTree = "<group>"; };
 		C5698A58CB61493C97913430 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -121,6 +124,8 @@
 		4372600619094884009C0D56 /* TextExtractorWith */ = {
 			isa = PBXGroup;
 			children = (
+				A7C8CE03191F9F9D006594E4 /* CellView.h */,
+				A7C8CE04191F9F9D006594E4 /* CellView.m */,
 				4372600F19094884009C0D56 /* AppDelegate.h */,
 				4372601019094884009C0D56 /* AppDelegate.m */,
 				4372601219094884009C0D56 /* Main.storyboard */,
@@ -297,6 +302,7 @@
 			files = (
 				4342F75A191F2C1500FB4BEF /* AppUtility.m in Sources */,
 				4372601719094884009C0D56 /* ViewController.m in Sources */,
+				A7C8CE05191F9F9D006594E4 /* CellView.m in Sources */,
 				4372601119094884009C0D56 /* AppDelegate.m in Sources */,
 				4372600D19094884009C0D56 /* main.m in Sources */,
 			);
