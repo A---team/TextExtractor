@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Our company's URL is http://www.nec-solutioninnovators.co.jp and the phone number is 03-5534-2222" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ApE-8a-Rfx">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Our company's URL is http://www.nec-solutioninnovators.co.jp and the phone number is 03-5534-2222" translatesAutoresizingMaskIntoConstraints="NO" id="ApE-8a-Rfx">
                                 <rect key="frame" x="20" y="35" width="280" height="125"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
