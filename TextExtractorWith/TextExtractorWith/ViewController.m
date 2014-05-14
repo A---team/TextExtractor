@@ -9,11 +9,15 @@
 #import "ViewController.h"
 #import "AppUtility.h"
 #import "CellView.h"
+#import <AFNetworking.h>
 
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextView *source;        // 入力領域
 @property (weak, nonatomic) IBOutlet UIView *contents; // 出力領域 imageView と textView をセットにしたCellクラスを利用するためこちらを利用しています。
+@property (weak, nonatomic) IBOutlet UITableView *tableContents;
+
+
 @property (weak, nonatomic) IBOutlet UISwitch *displayType; //表示タイプ
 
 - (IBAction)submit:(UIButton *)sender;                  // [Submit]ボタンをタップ
@@ -60,6 +64,7 @@
     //データ取得
     NSArray *imageArray = [self loadImageData];
 
+    /*
     //出力コンテンツの生成
     CellView *cellView = [[CellView alloc] initWithFrame:CGRectMake(0, 0, 280, 250)
                                 withImage:((imageArray.count > 0) ? [imageArray objectAtIndex:0] : nil)
@@ -67,6 +72,7 @@
 
     //出力領域に描画
     [_contents addSubview:cellView];
+     */
 }
 
 //****************************************************************
@@ -137,8 +143,34 @@
     NSMutableArray *muArray = [NSMutableArray array];
     NSArray *urlArray = [self extractImageURLs];
     for (int i=0; i < urlArray.count; i++) {
-        NSData *dt = [NSData dataWithContentsOfURL: [NSURL URLWithString:[urlArray objectAtIndex:i]]];
-        [muArray addObject:[[UIImage alloc] initWithData:dt]];
+        
+        // AFHTTPSessionManagerを利用して、http://localhost/test.jsonからJSONデータを取得する
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        [manager setResponseSerializer:[AFImageResponseSerializer serializer]];
+        
+        [manager GET:[urlArray objectAtIndex:i]
+          parameters:nil
+             success:^(NSURLSessionDataTask *task, id responseObject) {
+                 // 通信に成功した場合の処理
+                 NSLog(@"responseObject: %@", responseObject);
+                 [muArray addObject:(UIImage *)responseObject];
+                 
+                 //出力コンテンツの生成
+                 CellView *cellView = [[CellView alloc] initWithFrame:CGRectMake(0, 0, 280, 250)
+                                                            withImage:((muArray.count > 0) ? [muArray objectAtIndex:0] : nil)
+                                                             withText:self.source.text displayType:self.displayType.on];
+                 
+                 //出力領域に描画
+                 [_contents addSubview:cellView];
+
+                 
+             } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                 // エラーの場合はエラーの内容をコンソールに出力する
+                 NSLog(@"Error: %@", error);
+             }];
+        
+//        NSData *dt = [NSData dataWithContentsOfURL: [NSURL URLWithString:[urlArray objectAtIndex:i]]];
+//        [muArray addObject:[[UIImage alloc] initWithData:dt]];
         break; // 現状は１つ詰めると抜ける
     }
     return muArray;
