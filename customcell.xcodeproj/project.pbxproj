@@ -21,6 +21,9 @@
 		BD4915F419287AB100B24102 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD4915D619287AB100B24102 /* UIKit.framework */; };
 		BD4915FC19287AB100B24102 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BD4915FA19287AB100B24102 /* InfoPlist.strings */; };
 		BD4915FE19287AB100B24102 /* customcellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BD4915FD19287AB100B24102 /* customcellTests.m */; };
+		BD49162A1928837000B24102 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BD4916291928837000B24102 /* CustomTableViewCell.m */; };
+		BD49162F192884BE00B24102 /* inu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BD49162E192884BE00B24102 /* inu.jpg */; };
+		BD491631192884D200B24102 /* TableViewCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD491630192884D200B24102 /* TableViewCustomCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,11 @@
 		BD4915F919287AB100B24102 /* customcellTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "customcellTests-Info.plist"; sourceTree = "<group>"; };
 		BD4915FB19287AB100B24102 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BD4915FD19287AB100B24102 /* customcellTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = customcellTests.m; sourceTree = "<group>"; };
+		BD4916281928837000B24102 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomTableViewCell.h; path = ../CustomTableViewCell.h; sourceTree = "<group>"; };
+		BD4916291928837000B24102 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomTableViewCell.m; path = ../CustomTableViewCell.m; sourceTree = "<group>"; };
+		BD49162B192883D100B24102 /* TableViewConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewConst.h; path = ../TableViewConst.h; sourceTree = "<group>"; };
+		BD49162E192884BE00B24102 /* inu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = inu.jpg; sourceTree = "<group>"; };
+		BD491630192884D200B24102 /* TableViewCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCustomCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +120,8 @@
 		BD4915D819287AB100B24102 /* customcell */ = {
 			isa = PBXGroup;
 			children = (
+				BD49161819287DCF00B24102 /* images */,
+				BD49161719287DBD00B24102 /* parts */,
 				BD4915E119287AB100B24102 /* AppDelegate.h */,
 				BD4915E219287AB100B24102 /* AppDelegate.m */,
 				BD4915E419287AB100B24102 /* Main.storyboard */,
@@ -150,6 +160,25 @@
 				BD4915FA19287AB100B24102 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BD49161719287DBD00B24102 /* parts */ = {
+			isa = PBXGroup;
+			children = (
+				BD491630192884D200B24102 /* TableViewCustomCell.xib */,
+				BD49162B192883D100B24102 /* TableViewConst.h */,
+				BD4916281928837000B24102 /* CustomTableViewCell.h */,
+				BD4916291928837000B24102 /* CustomTableViewCell.m */,
+			);
+			name = parts;
+			sourceTree = "<group>";
+		};
+		BD49161819287DCF00B24102 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				BD49162E192884BE00B24102 /* inu.jpg */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,8 +258,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD4915EB19287AB100B24102 /* Images.xcassets in Resources */,
+				BD491631192884D200B24102 /* TableViewCustomCell.xib in Resources */,
 				BD4915DD19287AB100B24102 /* InfoPlist.strings in Resources */,
 				BD4915E619287AB100B24102 /* Main.storyboard in Resources */,
+				BD49162F192884BE00B24102 /* inu.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD4915E919287AB100B24102 /* ViewController.m in Sources */,
+				BD49162A1928837000B24102 /* CustomTableViewCell.m in Sources */,
 				BD4915E319287AB100B24102 /* AppDelegate.m in Sources */,
 				BD4915DF19287AB100B24102 /* main.m in Sources */,
 			);
@@ -456,6 +488,7 @@
 				BD49160319287AB100B24102 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BD49160419287AB100B24102 /* Build configuration list for PBXNativeTarget "customcellTests" */ = {
 			isa = XCConfigurationList;
@@ -464,6 +497,7 @@
 				BD49160619287AB100B24102 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
