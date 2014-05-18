@@ -7,9 +7,16 @@
 //
 
 #import "TableViewController.h"
+#import <AFNetworking.h>
+#import "CellView.h"
+#import "TableViewCell.h"
 
 @interface TableViewController ()
-
+{
+    NSArray *urlArray;
+    NSMutableArray *cellList;
+    int random;;
+}
 @end
 
 @implementation TableViewController
@@ -26,12 +33,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.tableView registerClass:[TableViewCell class] forCellReuseIdentifier:@"Cell"];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // ナビゲーションバーの左側にEditボタンを設定する
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    
+    // ＋ボタンを作る
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+    
+    // ナビゲーションバーの右側に＋ボタンを設定する
+    self.navigationItem.rightBarButtonItem = addButton;
+    
+    // 配列
+    urlArray = [NSArray array];
+    urlArray = @[@"https://www.apple.com/jp/iphone-5s/home/images/hero_hero_mba_11.png",
+                 @"https://www.apple.com/jp/iphone-5s/home/images/routing_hero.png",
+                 @"https://www.apple.com/jp/iphone-5s/home/images/ilife_hero.jpg"];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,32 +59,59 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)insertNewObject:(id)sender
+{
+    if (!cellList) {
+        cellList = [[NSMutableArray alloc] init];
+    }
+    //[cellList insertObject:[NSDate date] atIndex:0];
+    [cellList insertObject:urlArray[random%3] atIndex:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    random++;
+}
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return cellList.count;
 }
 
-/*
+// 選ばれたシーンへ移動する
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    NSLog(@"cellForRowAtIndexPath");
+    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    NSString *contents = cellList[indexPath.row];
     
-    // Configure the cell...
+    // 下記の処理も全部カスタムクラスでやればよい気がする
+    // イメージの取得＆表示
+    [cell downloadThumbnail:contents];
     
+    // ラベルのセット
+    cell.textLabel.text = contents;
+    cell.titleLabel.text = @"custom string...";
+
+    // セルのアクセサリタイプ( > を表示する)
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
     return cell;
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.
