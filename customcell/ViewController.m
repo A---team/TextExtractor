@@ -61,7 +61,7 @@
     static NSString *CellIdentifier = @"Cell";
     CustomTableViewCell *tablecell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (tablecell == nil) {
-        tablecell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        tablecell = [[CustomTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     tablecell.cellImage.image = [UIImage imageNamed:@"inu.jpg"];
@@ -75,13 +75,13 @@
     static NSString *CellIdentifier = @"Cell";
     CustomTableViewCell *tablecell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (tablecell == nil) {
-        tablecell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        tablecell = [[CustomTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     //入力された文字の仮想のフィールドに展開して、必要な高さの算出
     UIFont* font = [UIFont systemFontOfSize:14.0];
     CGSize size = CGSizeMake(tablecell.celltextview.frame.size.width, 900);
-    CGSize textSize = [[self.cells objectAtIndex:indexPath.row] sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeCharacterWrap];
+    CGSize textSize = [[self.cells objectAtIndex:indexPath.row] sizeWithFont:font constrainedToSize:size lineBreakMode: NSLineBreakByCharWrapping];
     
     
     float height = 50.0f; // セルの最低限の高さ
