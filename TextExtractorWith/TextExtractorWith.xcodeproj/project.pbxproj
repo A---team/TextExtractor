@@ -23,6 +23,9 @@
 		4372602A19094884009C0D56 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4372602819094884009C0D56 /* InfoPlist.strings */; };
 		4372602C19094884009C0D56 /* TextExtractorWithTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4372602B19094884009C0D56 /* TextExtractorWithTests.m */; };
 		A7C8CE05191F9F9D006594E4 /* CellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C8CE04191F9F9D006594E4 /* CellView.m */; };
+		BDAE2CBE19307A11002137F1 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BDAE2CBC19307A11002137F1 /* CustomTableViewCell.m */; };
+		BDAE2CC019307A39002137F1 /* TableViewCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BDAE2CBF19307A39002137F1 /* TableViewCustomCell.xib */; };
+		BDAE2CC319307A6C002137F1 /* inu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BDAE2CC219307A6C002137F1 /* inu.jpg */; };
 		EA0C8A0B6E6F402788209440 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5698A58CB61493C97913430 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +64,11 @@
 		4372602B19094884009C0D56 /* TextExtractorWithTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextExtractorWithTests.m; sourceTree = "<group>"; };
 		A7C8CE03191F9F9D006594E4 /* CellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellView.h; sourceTree = "<group>"; };
 		A7C8CE04191F9F9D006594E4 /* CellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellView.m; sourceTree = "<group>"; };
+		BDAE2CBB19307A11002137F1 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
+		BDAE2CBC19307A11002137F1 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
+		BDAE2CBD19307A11002137F1 /* TableViewConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewConst.h; sourceTree = "<group>"; };
+		BDAE2CBF19307A39002137F1 /* TableViewCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCustomCell.xib; sourceTree = "<group>"; };
+		BDAE2CC219307A6C002137F1 /* inu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = inu.jpg; sourceTree = "<group>"; };
 		C5698A58CB61493C97913430 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -124,6 +132,8 @@
 		4372600619094884009C0D56 /* TextExtractorWith */ = {
 			isa = PBXGroup;
 			children = (
+				BDAE2CC119307A5E002137F1 /* image */,
+				BDAE2CBA193079F9002137F1 /* TableCell */,
 				A7C8CE03191F9F9D006594E4 /* CellView.h */,
 				A7C8CE04191F9F9D006594E4 /* CellView.m */,
 				4372600F19094884009C0D56 /* AppDelegate.h */,
@@ -166,6 +176,25 @@
 				4372602819094884009C0D56 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BDAE2CBA193079F9002137F1 /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				BDAE2CBF19307A39002137F1 /* TableViewCustomCell.xib */,
+				BDAE2CBB19307A11002137F1 /* CustomTableViewCell.h */,
+				BDAE2CBC19307A11002137F1 /* CustomTableViewCell.m */,
+				BDAE2CBD19307A11002137F1 /* TableViewConst.h */,
+			);
+			name = TableCell;
+			sourceTree = "<group>";
+		};
+		BDAE2CC119307A5E002137F1 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				BDAE2CC219307A6C002137F1 /* inu.jpg */,
+			);
+			name = image;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,7 +277,9 @@
 			files = (
 				4372601919094884009C0D56 /* Images.xcassets in Resources */,
 				4372600B19094884009C0D56 /* InfoPlist.strings in Resources */,
+				BDAE2CC019307A39002137F1 /* TableViewCustomCell.xib in Resources */,
 				4372601419094884009C0D56 /* Main.storyboard in Resources */,
+				BDAE2CC319307A6C002137F1 /* inu.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +333,7 @@
 			files = (
 				4342F75A191F2C1500FB4BEF /* AppUtility.m in Sources */,
 				4372601719094884009C0D56 /* ViewController.m in Sources */,
+				BDAE2CBE19307A11002137F1 /* CustomTableViewCell.m in Sources */,
 				A7C8CE05191F9F9D006594E4 /* CellView.m in Sources */,
 				4372601119094884009C0D56 /* AppDelegate.m in Sources */,
 				4372600D19094884009C0D56 /* main.m in Sources */,

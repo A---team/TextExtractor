@@ -1,10 +1,31 @@
 PODS:
+  - AFNetworking (2.2.4):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.2.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.2.4):
+    - AFNetworking/NSURLConnection
+  - AFNetworking/Reachability (2.2.4)
+  - AFNetworking/Security (2.2.4)
+  - AFNetworking/Serialization (2.2.4)
+  - AFNetworking/UIKit (2.2.4):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
   - SECoreTextView (0.8.3)
 
 DEPENDENCIES:
+  - AFNetworking (~> 2.2)
   - SECoreTextView
 
 SPEC CHECKSUMS:
-  SECoreTextView: d9ce0a38c90a2d9c58a7bfc76d7f11b88b3cc542
+  AFNetworking: ab63e259fe91eef4519b371ef0a4955af0e73e64
+  SECoreTextView: d5c3f5d7dbef475990db2f21037e1b28cdfca187
 
 COCOAPODS: 0.32.1
