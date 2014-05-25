@@ -12,6 +12,9 @@
 
 @interface AppUtility : NSObject
 
+// URLからデータを取得し、取得したデータ配列を返却する
+- (NSMutableArray *)loadImageData:(NSString *)input;
+
 // テキスト(文字列)からURLを抽出
 + (NSArray *)extractURLsFromText:(NSString *)text;
 
