@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface TableViewCell : UITableViewCell
-@property   UILabel *titleLabel;
+@property   UITextView *titleLabel;
 
 - (void) downloadThumbnail:(NSString *)displayContents;
 @end

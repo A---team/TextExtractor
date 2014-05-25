@@ -17,6 +17,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
     if (self) {
+        /*
         //メインテキスト
         self.titleLabel  = [[UILabel alloc] initWithFrame:CGRectMake(70, 25, 240, 20)];
         self.titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -27,6 +28,7 @@
         
         //ドキュメントによると、self.contentViewに追加するのが正しいとコメントいただきました。
         [self.contentView addSubview:self.titleLabel];
+        */
         
         //オリジナルのtextLabel
         self.textLabel.font = [UIFont systemFontOfSize:15];
@@ -34,7 +36,17 @@
         
         //オリジナルのImageView
         //self.imageView.contentMode = UIViewContentModeScaleToFill;
-
+        //self.imageView = [[UIImageView alloc] initWithImage:image];
+        self.imageView.contentMode = UIViewContentModeScaleToFill;//UIViewContentModeScaleAspectFit;
+        
+        self.titleLabel = [[UITextView alloc] initWithFrame:CGRectMake(75, 5, 240, 60)];
+        //textView.text = text;
+        self.titleLabel.font = [UIFont systemFontOfSize:10];
+        self.titleLabel.editable = NO;
+        self.titleLabel.selectable = YES;
+        self.titleLabel.dataDetectorTypes = UIDataDetectorTypeAll;
+        self.titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        [self.contentView addSubview:self.titleLabel];
     }
     
     //レイアウトをアップデート
@@ -56,6 +68,7 @@
              // 通信に成功した場合の処理
              NSLog(@"responseObject: %@", responseObject);
              self.imageView.image = (UIImage *)responseObject;
+             //self.imageView.contentMode = UIViewContentModeScaleAspectFit;
              [self setNeedsLayout];
              
          } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -68,6 +81,19 @@
     // Initialization code
 }
 
+- (void) layoutSubviews {
+    [super layoutSubviews];
+    
+    float desiredWidth = 60;
+    float w=self.imageView.frame.size.width;
+    if (w>desiredWidth) {
+        float widthSub = w - desiredWidth;
+        self.imageView.frame = CGRectMake(self.imageView.frame.origin.x,self.imageView.frame.origin.y,desiredWidth,self.imageView.frame.size.height);
+        self.textLabel.frame = CGRectMake(self.textLabel.frame.origin.x-widthSub,self.textLabel.frame.origin.y,self.textLabel.frame.size.width+widthSub,self.textLabel.frame.size.height);
+        self.detailTextLabel.frame = CGRectMake(self.detailTextLabel.frame.origin.x-widthSub,self.detailTextLabel.frame.origin.y,self.detailTextLabel.frame.size.width+widthSub,self.detailTextLabel.frame.size.height);
+        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];

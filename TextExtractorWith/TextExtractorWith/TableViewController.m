@@ -104,8 +104,9 @@
     [cell downloadThumbnail:contents];
     
     // ラベルのセット
-    cell.textLabel.text = contents;
-    cell.titleLabel.text = @"custom string...";
+    //cell.textLabel.text = contents;
+    //cell.titleLabel.text = @"custom string...";
+    cell.titleLabel.text = contents;
 
     // セルのアクセサリタイプ( > を表示する)
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
