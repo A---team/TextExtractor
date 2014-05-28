@@ -71,15 +71,21 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [self.cells count];
 }
+
 //各セルの表示内容
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"cellForRowAtIndexPath");
+
+    // Cell の取得
     static NSString *CellIdentifier = @"Cell";
     CustomTableViewCell *tablecell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (tablecell == nil) {
         tablecell = [[CustomTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    // アバター画像の設定
     tablecell.cellImage.image = [UIImage imageNamed:@"inu.jpg"];
+    // テキスト設定
     tablecell.celltextview.text = [self.cells objectAtIndex:indexPath.row];
     
     return tablecell;
@@ -87,6 +93,9 @@
 
 //各セルの高さ
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSLog(@"heightForRowAtIndexPath");
+    
     static NSString *CellIdentifier = @"Cell";
     CustomTableViewCell *tablecell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (tablecell == nil) {
@@ -105,12 +114,11 @@
         height += h;
     }
 
-    //画像の表示領域を確保する
-    NSArray *imageArray = [[AppUtility alloc] loadImageData:[self.cells objectAtIndex:indexPath.row]];
-    height += ((imageArray.count > 0) ? 50 : 0);
+    // 表示する画像URLが1つ委譲あれば表示領域を確保する（取得に失敗した場合は後で縮めることができればよいがだめなら失敗した旨の通知）
+    NSArray *imgUrl = [AppUtility extractImageURLsFromText:[self.cells objectAtIndex:indexPath.row]];
+    height += ((imgUrl.count > 0) ? 50 : 0);
     
-    return (int)height
-    ;
+    return (int)height;
 }
 
 //****************************************************************
