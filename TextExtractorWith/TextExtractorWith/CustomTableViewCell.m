@@ -114,6 +114,9 @@
              UIImageView *imageView = [[UIImageView alloc] initWithFrame:ivRect];
              imageView.image = (UIImage *)responseObject;
              imageView.contentMode = UIViewContentModeScaleToFill;
+             
+             float imgContentsSize = scrollView.contentSize.width;
+             scrollView.contentSize = CGSizeMake(imgContentsSize + 55, 50);
              [scrollView addSubview:imageView];
 
              NSLog(@"setNeedsLayout");
