@@ -114,7 +114,7 @@
         height += h;
     }
 
-    // 表示する画像URLが1つ委譲あれば表示領域を確保する（取得に失敗した場合は後で縮めることができればよいがだめなら失敗した旨の通知）
+    // 表示する画像URLが1つ以上あれば表示領域を確保する（取得に失敗した場合は後で縮めることができればよいがだめなら失敗した旨の通知）
     NSArray *imgUrl = [AppUtility extractImageURLsFromText:[self.cells objectAtIndex:indexPath.row]];
     height += ((imgUrl.count > 0) ? 50 : 0);
     
