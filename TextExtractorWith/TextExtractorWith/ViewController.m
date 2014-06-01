@@ -157,7 +157,7 @@
 
 - (IBAction)presetD:(UIButton *)sender
 {
-    self.source.text = @"https://www.apple.com/jp/iphone-5s/home/images/hero_hero_mba_11.png";
+    self.source.text = @"https://www.apple.com/jp/iphone-5s/home/images/hero_hero_mba_11.png\nhttps://www.apple.com/jp/iphone-5s/home/images/routing_hero.png\nhttps://www.apple.com/jp/ipad-mini/overview/images/overview_hero.jpg\nhttps://www.apple.com/jp/ipad-air/design/images/hardware_software.jpg\nhttps://www.apple.com/jp/macbook-air/images/overview_wireless_hero_enhanced.png\nhttps://www.apple.com/jp/macbook-pro/images/overview_hero.jpg";
 }
 
 - (IBAction)presetE:(UIButton *)sender

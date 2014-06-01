@@ -64,7 +64,9 @@
     // 表示するサムネイルがあれば取得に行く
     NSArray *imgArray = [AppUtility extractImageURLsFromText:_celltextview.text];
     if (imgArray.count > 0) {
-        [self downloadThumbnail:[imgArray objectAtIndex:0]];
+        for (NSInteger i = 0; imgArray.count >i; i++) {
+            [self downloadThumbnail:[imgArray objectAtIndex:i] index:i];
+        }
         isExistImage = true;
     }
 
@@ -86,6 +88,7 @@
     [self addSubview:textView];
     
     scrollView = [[UIScrollView alloc] initWithFrame:svRect];
+    scrollView.showsHorizontalScrollIndicator = YES;
     [self addSubview:scrollView];
 
 }
@@ -95,7 +98,7 @@
     return textOriginalFrame;
 }
 
-- (void) downloadThumbnail:(NSString *)displayContents
+- (void) downloadThumbnail:(NSString *)displayContents index:(NSInteger)index
 {
     NSLog(@"start AFNetworking");
     // AFHTTPSessionManagerを利用して、http://localhost/test.jsonからJSONデータを取得する
@@ -107,7 +110,7 @@
          success:^(NSURLSessionDataTask *task, id responseObject) {
              // 通信に成功した場合の処理
              NSLog(@"responseObject: %@", responseObject);
-             ivRect = CGRectMake(0, 0, 50, 50);
+             ivRect = CGRectMake(50*index, 0, 50, 50);
              UIImageView *imageView = [[UIImageView alloc] initWithFrame:ivRect];
              imageView.image = (UIImage *)responseObject;
              imageView.contentMode = UIViewContentModeScaleToFill;
