@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomTableViewCell : UITableViewCell
+@interface CustomTableViewCell : UITableViewCell <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *cellImage;
 @property (weak, nonatomic) IBOutlet UITextView *celltextview;
 - (CGRect)getOriginalFrame;

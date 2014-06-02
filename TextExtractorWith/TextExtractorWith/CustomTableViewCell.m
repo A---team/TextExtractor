@@ -10,10 +10,16 @@
 #import "AppUtility.h"
 #import <AFNetworking.h>
 
+#define IMAGE_WIDTH			50
+#define IMAGE_HEIGHT		50
+
 @implementation CustomTableViewCell{
     CGRect textOriginalFrame;
     CGRect ivRect, tvRect, svRect;
     UIScrollView *scrollView;
+    NSInteger pageNum;
+    NSInteger lastIndex;
+    NSMutableArray *imageArray;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -47,6 +53,7 @@
         // Initialization code
     }
     textOriginalFrame = self.celltextview.frame;
+    pageNum = 0;
     return self;
 }
 
@@ -88,6 +95,7 @@
     [self addSubview:textView];
     
     scrollView = [[UIScrollView alloc] initWithFrame:svRect];
+    scrollView.delegate = self;
     scrollView.showsHorizontalScrollIndicator = YES;
     [self addSubview:scrollView];
 
@@ -116,9 +124,18 @@
              imageView.contentMode = UIViewContentModeScaleToFill;
              
              float imgContentsSize = scrollView.contentSize.width;
-             scrollView.contentSize = CGSizeMake(imgContentsSize + 55, 50);
-             [scrollView addSubview:imageView];
+//             scrollView.contentSize = CGSizeMake(imgContentsSize + 55, 50);
+             scrollView.contentSize = CGSizeMake(imgContentsSize + 200, 50); //ここを大きくしないと循環スクロールのときにエラーになる
 
+             [scrollView addSubview:imageView];
+             
+             // 循環スクロール用に情報を保持
+             if(imageArray == nil){
+                 imageArray = [NSMutableArray array];
+             }
+             [imageArray addObject:imageView];
+             lastIndex = index > lastIndex ? index : lastIndex;
+             
              NSLog(@"setNeedsLayout");
              [self setNeedsLayout];
              
@@ -126,6 +143,36 @@
              // エラーの場合はエラーの内容をコンソールに出力する
              NSLog(@"Error: %@", error);
          }];
+}
+
+# pragma UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView2
+{
+    // 現在の表示位置（左上）のx座標とUIScrollViewの表示幅(320px)を
+    // 用いて現在のページ番号を計算します。
+    CGPoint offset = scrollView2.contentOffset;
+    int page = (offset.x)/ IMAGE_WIDTH;
+    if(pageNum == page){
+        return;
+    }
+    
+    if(page > 0){
+        NSLog(@"page : %d", page);
+        NSLog(@"pageNum : %d", pageNum);
+        
+        NSInteger num = pageNum % imageArray.count;
+        //左にスワイプ（右にスクロールした場合）
+        UIImageView *img = [imageArray objectAtIndex:num];
+        img.frame = CGRectMake(50*lastIndex+1, 0, 50, 50);
+        [scrollView addSubview:img];
+        lastIndex++;
+        pageNum++;
+    }else{
+        //右にスワイプ（左にスクロールした場合
+    }
+    
+    
 }
 
 @end
