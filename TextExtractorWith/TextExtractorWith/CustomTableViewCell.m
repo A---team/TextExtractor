@@ -125,7 +125,7 @@
              
              float imgContentsSize = scrollView.contentSize.width;
 //             scrollView.contentSize = CGSizeMake(imgContentsSize + 55, 50);
-             scrollView.contentSize = CGSizeMake(imgContentsSize + 200, 50); //ここを大きくしないと循環スクロールのときにエラーになる
+             scrollView.contentSize = CGSizeMake(imgContentsSize + 2000, 50); //ここを大きくしないと循環スクロールのときにエラーになる
 
              [scrollView addSubview:imageView];
              
@@ -149,30 +149,21 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView2
 {
-    // 現在の表示位置（左上）のx座標とUIScrollViewの表示幅(320px)を
-    // 用いて現在のページ番号を計算します。
-    CGPoint offset = scrollView2.contentOffset;
-    int page = (offset.x)/ IMAGE_WIDTH;
-    if(pageNum == page){
-        return;
-    }
-    
-    if(page > 0){
-        NSLog(@"page : %d", page);
-        NSLog(@"pageNum : %d", pageNum);
-        
-        NSInteger num = pageNum % imageArray.count;
+    int page = scrollView2.contentOffset.x / IMAGE_WIDTH;
+    NSInteger num = pageNum % imageArray.count;
+    if(page > pageNum){
         //左にスワイプ（右にスクロールした場合）
         UIImageView *img = [imageArray objectAtIndex:num];
-        img.frame = CGRectMake(50*lastIndex+1, 0, 50, 50);
-        [scrollView addSubview:img];
-        lastIndex++;
-        pageNum++;
-    }else{
+        img.frame = CGRectMake(50*(lastIndex+1), 0, 50, 50);
+        lastIndex = lastIndex + 1;;
+        pageNum = pageNum + 1;
+    }else if(page < pageNum){
         //右にスワイプ（左にスクロールした場合
+        UIImageView *img = [imageArray objectAtIndex:(imageArray.count - num -1)];
+        img.frame = CGRectMake(50*(lastIndex - 1 - imageArray.count + 1), 0, 50, 50);
+        lastIndex = lastIndex - 1;
+        pageNum = pageNum - 1;
     }
-    
-    
 }
 
 @end
