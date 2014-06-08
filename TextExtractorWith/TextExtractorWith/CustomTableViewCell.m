@@ -18,6 +18,7 @@
     CGRect ivRect, tvRect, svRect;
     UIScrollView *scrollView;
     NSInteger pageNum;
+    NSInteger firstIndex;
     NSInteger lastIndex;
     NSMutableArray *imageArray;
 }
@@ -71,6 +72,7 @@
     // 表示するサムネイルがあれば取得に行く
     NSArray *imgArray = [AppUtility extractImageURLsFromText:_celltextview.text];
     if (imgArray.count > 0) {
+        firstIndex = 0;
         lastIndex = imgArray.count -1;
         for (NSInteger i = 0; imgArray.count >i; i++) {
             [self downloadThumbnail:[imgArray objectAtIndex:i] index:i];
@@ -99,7 +101,7 @@
     scrollView.delegate = self;
     scrollView.showsHorizontalScrollIndicator = YES;
     [self addSubview:scrollView];
-
+NSLog(@"imageArray : %@",imageArray);
 }
 
 - (CGRect)getOriginalFrame
@@ -139,9 +141,9 @@
              //[imageArray addObject:imageView];
              //lastIndex = index > lastIndex ? index : lastIndex;
              [imageArray replaceObjectAtIndex:index withObject:imageView];
-             NSLog(@"setNeedsLayout");
+             //NSLog(@"setNeedsLayout");
              [self setNeedsLayout];
-             
+
          } failure:^(NSURLSessionDataTask *task, NSError *error) {
              // エラーの場合はエラーの内容をコンソールに出力する
              NSLog(@"Error: %@", error);
@@ -152,20 +154,24 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView2
 {
-    int page = scrollView2.contentOffset.x / IMAGE_WIDTH;
-    NSInteger num = pageNum % imageArray.count;
-    if(page > pageNum){
-        //左にスワイプ（右にスクロールした場合）
-        UIImageView *img = [imageArray objectAtIndex:num];
-        img.frame = CGRectMake(IMAGE_WIDTH*(lastIndex+1), 0, IMAGE_WIDTH, IMAGE_HEIGHT);
-        lastIndex = lastIndex + 1;
-        pageNum = pageNum + 1;
-    }else if(page < pageNum){
-        //右にスワイプ（左にスクロールした場合
-        UIImageView *img = [imageArray objectAtIndex:(imageArray.count - num -1)];
-        img.frame = CGRectMake(IMAGE_WIDTH*(lastIndex - 1 - imageArray.count + 1), 0, IMAGE_WIDTH, IMAGE_HEIGHT);
-        lastIndex = lastIndex - 1;
-        pageNum = pageNum - 1;
+    CGFloat position = scrollView2.contentOffset.x / IMAGE_WIDTH;
+    CGFloat delta = position - firstIndex;
+    if(fabs(delta) >= 1.0f){
+        if (delta > 1) {
+            //左にスワイプ（右にスクロールした場合）
+            UIImageView *img = [imageArray objectAtIndex:(firstIndex % imageArray.count)];
+            img.frame = CGRectMake(IMAGE_WIDTH*(lastIndex+1), 0, IMAGE_WIDTH, IMAGE_HEIGHT);
+            firstIndex = firstIndex+1;
+            lastIndex  = lastIndex+1;
+            //NSLog(@"imageArray : %@",imageArray);
+        }else{
+            //右にスワイプ（左にスクロールした場合
+            UIImageView *img = [imageArray objectAtIndex:(lastIndex % imageArray.count)];
+            img.frame = CGRectMake(IMAGE_WIDTH*(firstIndex-1), 0, IMAGE_WIDTH, IMAGE_HEIGHT);
+            firstIndex = firstIndex - 1;
+            lastIndex = lastIndex - 1;
+            //NSLog(@"imageArray : %@",imageArray);
+        }
     }
 }
 
