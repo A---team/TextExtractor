@@ -142,7 +142,7 @@
 // プリセット文字列を入力領域にセット(デモ用)
 - (IBAction)presetA:(UIButton *)sender
 {
-    self.source.text = @"Our company's URL is http://www.nec-solutioninnovators.co.jp and the phone number is 03-5534-2222";
+    self.source.text = @"http://ec.midori-anzen.com/img/goods/L/AS-24-1SS.jpg\nhttp://ec.midori-anzen.com/img/goods/L/AS-24-2L.jpg\nhttp://ec.midori-anzen.com/img/goods/L/AS-24-3L.jpg\nhttp://ecx.images-amazon.com/images/I/41AeeaYmZBL._SY300_.jpg\nhttp://www.nts.ne.jp/img/item/sns/detail/SNS047799.jpg\nhttp://ec.midori-anzen.com/img/goods/L/AS-24-6SS.jpg";
 }
 
 - (IBAction)presetB:(UIButton *)sender

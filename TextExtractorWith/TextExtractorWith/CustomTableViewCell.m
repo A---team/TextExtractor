@@ -71,6 +71,7 @@
     // 表示するサムネイルがあれば取得に行く
     NSArray *imgArray = [AppUtility extractImageURLsFromText:_celltextview.text];
     if (imgArray.count > 0) {
+        lastIndex = imgArray.count -1;
         for (NSInteger i = 0; imgArray.count >i; i++) {
             [self downloadThumbnail:[imgArray objectAtIndex:i] index:i];
         }
@@ -118,24 +119,26 @@
          success:^(NSURLSessionDataTask *task, id responseObject) {
              // 通信に成功した場合の処理
              NSLog(@"responseObject: %@", responseObject);
-             ivRect = CGRectMake(50*index, 0, 50, 50);
+             ivRect = CGRectMake(IMAGE_WIDTH*index, 0, IMAGE_WIDTH, IMAGE_HEIGHT);
              UIImageView *imageView = [[UIImageView alloc] initWithFrame:ivRect];
              imageView.image = (UIImage *)responseObject;
              imageView.contentMode = UIViewContentModeScaleToFill;
              
              float imgContentsSize = scrollView.contentSize.width;
-//             scrollView.contentSize = CGSizeMake(imgContentsSize + 55, 50);
-             scrollView.contentSize = CGSizeMake(imgContentsSize + 2000, 50); //ここを大きくしないと循環スクロールのときにエラーになる
+             scrollView.contentSize = CGSizeMake(imgContentsSize + 40*IMAGE_WIDTH, IMAGE_HEIGHT); //ここを大きくしないと循環スクロールのときにエラーになる
 
              [scrollView addSubview:imageView];
              
              // 循環スクロール用に情報を保持
              if(imageArray == nil){
                  imageArray = [NSMutableArray array];
+                 for (int i = 0; lastIndex >= i; i++) {
+                     [imageArray addObject:@""];
+                 }
              }
-             [imageArray addObject:imageView];
-             lastIndex = index > lastIndex ? index : lastIndex;
-             
+             //[imageArray addObject:imageView];
+             //lastIndex = index > lastIndex ? index : lastIndex;
+             [imageArray replaceObjectAtIndex:index withObject:imageView];
              NSLog(@"setNeedsLayout");
              [self setNeedsLayout];
              
@@ -154,13 +157,13 @@
     if(page > pageNum){
         //左にスワイプ（右にスクロールした場合）
         UIImageView *img = [imageArray objectAtIndex:num];
-        img.frame = CGRectMake(50*(lastIndex+1), 0, 50, 50);
-        lastIndex = lastIndex + 1;;
+        img.frame = CGRectMake(IMAGE_WIDTH*(lastIndex+1), 0, IMAGE_WIDTH, IMAGE_HEIGHT);
+        lastIndex = lastIndex + 1;
         pageNum = pageNum + 1;
     }else if(page < pageNum){
         //右にスワイプ（左にスクロールした場合
         UIImageView *img = [imageArray objectAtIndex:(imageArray.count - num -1)];
-        img.frame = CGRectMake(50*(lastIndex - 1 - imageArray.count + 1), 0, 50, 50);
+        img.frame = CGRectMake(IMAGE_WIDTH*(lastIndex - 1 - imageArray.count + 1), 0, IMAGE_WIDTH, IMAGE_HEIGHT);
         lastIndex = lastIndex - 1;
         pageNum = pageNum - 1;
     }
